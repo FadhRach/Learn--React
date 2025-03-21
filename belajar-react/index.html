@@ -18,6 +18,14 @@
             return(<h1>Belajar {author ? author : "React"} 💕</h1>);
         }
 
+        function Button({text, onClick}) {
+            return(<button onClick={onClick}>{text ? text : "Reset!"}</button>);
+        }
+
+        function Text({value}) {
+            return(<p>{value ? value : "0"}</p>)
+        }
+
         function HomePage() {
             const hepiturings = ['fadh', 'sisil', 'nai','bambang', 'kuda', 'kepin', 'alex'];
             const [likes, setLikes] = React.useState(0);
@@ -41,7 +49,36 @@
             );
         }
 
-        root.render(<HomePage/>);
+        function SimpleCounter(){
+            const [counter, setCounter] = React.useState(0);
+
+            function handleAdd() {
+                setCounter(counter+1)
+            }
+
+            function handleLess() {
+                setCounter(counter-1)
+            }
+
+            function handleReset() {
+                setCounter(0)
+            }
+
+            return (
+                <>
+                    <div style={{ display: "flex" }}>
+                        <Button onClick={handleLess} text="-" />
+                        <Text value={counter} />
+                        <Button onClick={handleAdd} text="+" />
+                    </div>
+                    <div>
+                        <Button onClick={handleReset} />
+                    </div>
+                </>
+            );
+        }
+
+        root.render(<SimpleCounter/>);
     </script>
 </body>
 </html>
